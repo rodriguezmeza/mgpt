@@ -1,0 +1,100 @@
+# ----- MAKE FILE machine defintions -----
+#
+# ========================================
+# Choose the machine you are running on.
+# ========================================
+#
+#MACHINE  = MACPORTS
+#MACHINE = MACBREW
+MACHINE = MACBREWOPT
+#MACHINE = MACCLANG
+#MACHINE = MACOTHER
+#MACHINE = MACUBUNTU
+#MACHINE = MACINTEL
+
+
+CCFLAGS =
+LDFLAGS =
+LIBS =
+OPT1 =
+OPT2 =
+
+#--------------------------------------------
+# Set local options to this code
+# 	INCLUDES :: OPT1
+# 	OTHER OPTIONS :: OPT2
+# Some of this definitions can be set in a particular machine
+#
+OPT1    +=  -I ./
+OPT1    +=  -I ./general_libs/
+#
+#OPT2   +=  -DOPTIONNAME
+# Add as many as needed
+
+INCLUDES = $(OPT1)
+
+#PRECISION = DOUBLEPREC
+
+#--------------------------------------------
+# BEGIN MACHINE DEFINITIONS (ARCHITECTURES)
+#
+ifeq ($(MACHINE), MACPORTS)
+  CC = gcc
+  FC = gfortran
+  F90C = gfortran
+  F90 = gfortran
+  OPTIMIZE = -O3 -fopenmp
+endif
+
+ifeq ($(MACHINE), MACBREW)
+  CC = gcc
+  FC = gfortran
+  F90C = gfortran
+  F90 = gfortran
+  OPTIMIZE = -g -O3
+  OMPFLAG = -fopenmp
+  CCFLAGS +=
+  LDFLAGS +=
+  MLIBS = -lm
+endif
+
+ifeq ($(MACHINE), MACBREWOPT)
+  CC = gcc
+  FC = gfortran
+  F90C = gfortran
+  F90 = gfortran
+#  OPTIMIZE = -O3 -Wall -std=c99
+  OPTIMIZE = -O3 -std=c99
+  OMPFLAG = -fopenmp
+  CCFLAGS += -g -fPIC
+  LDFLAGS += -g -fPIC
+  MLIBS = -lm
+endif
+
+ifeq ($(MACHINE), MACCLANG)
+  CC = clang
+  F90C = gfortran
+  F90 = gfortran
+  OPTIMIZE = -O2
+endif
+
+ifeq ($(MACHINE), MACUBUNTU)
+  CC = gcc
+  F90C = gfortran
+  F90 = gfortran
+  OPTIMIZE = -O3 -fopenmp
+  MLIBS = -lm
+endif
+
+ifeq ($(MACHINE), MACINTEL)
+  CC = icc
+  F90C = ifort
+  F90 = ifort
+  OPTIMIZE = -g -O3
+  OMPFLAG = -gopenmp
+endif
+
+#
+# END MACHINE DEFINITIONS
+#--------------------------------------------
+
