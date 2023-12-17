@@ -40,10 +40,10 @@ DOWNLOAD:
 Git clone
 
 ```
-git clone https://github.com/cosmoinin/MGPT.git
+git clone https://github.com/rodriguezmeza/mgpt.git
 ```
 
-or download it from http://www.github.com/cosmoinin/MGPT
+or download it from http://www.github.com/rodriguezmeza/mgpt
 
 
 Compile:
